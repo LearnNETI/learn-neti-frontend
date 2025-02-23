@@ -1,0 +1,23 @@
+.header-logo {
+    z-index: 100;
+    position: relative;
+    width: 240px;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    &__text {
+        font-size: 28px;
+    }
+    &::after {
+        position: absolute;
+        right: -20px;
+        border-radius: var(--border-radius);
+        content: "";
+        height: 60%;
+        width: 2px;
+        background-color: var(--buttons-secondary);
+    }
+}

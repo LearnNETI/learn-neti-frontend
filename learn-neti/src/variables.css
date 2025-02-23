@@ -1,0 +1,11 @@
+:root { 
+    --buttons-secondary:#898989;
+    --buttons-primary:#00B6FF;
+    --accent: #0059FF;
+    --bg-white: #fff;
+    --bg-gray: #F1F0F2;
+    --text-color: #030C10;
+
+    --border-radius: 8px;
+
+}

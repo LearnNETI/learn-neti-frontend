@@ -1,0 +1,73 @@
+.feed {
+  margin-top: 80px;
+}
+.feed__head {
+  text-align: center;
+}
+.feed__cards {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+.feed__card {
+  display: flex;
+  max-width: 700px;
+  border-radius: var(--border-radius);
+  color: var(--bg-white);
+  background-color: var(--buttons-primary);
+}
+
+.card-info {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.card-info-themes {
+  display: flex;
+  gap: 12px;
+}
+.card-info-subject, .card-info-has-test {
+  color: var(--text-color);
+  font-size: 12px;
+  padding: 4px 8px;
+  background-color: #d9d9d9;
+  border-radius: var(--border-radius);
+}
+.card-info-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.card-info-main-title {
+  font-size: 20px;
+}
+.card-info-sub-title {
+  font-size: 14px;
+}
+
+.amount-of-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-left: 2px solid var(--bg-white);
+  border-right: 2px solid var(--bg-white);
+}
+
+.decimal-value {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.card-btn {
+  border: none;
+  border-radius: 0px var(--border-radius) var(--border-radius) 0px;
+  background-color: var(--buttons-secondary);
+  color: var(--bg-white);
+  padding: 12px;
+}/*# sourceMappingURL=feed.css.map */

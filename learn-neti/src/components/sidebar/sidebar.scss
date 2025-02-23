@@ -1,0 +1,16 @@
+.sidebar {
+    background-color: var(--bg-white);
+    padding: 16px;
+    border-radius: var(--border-radius); 
+    position: fixed;
+    left: 32px;
+    top: 132px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    &-regular {
+        display: flex;
+        justify-content: center;
+    }
+
+}

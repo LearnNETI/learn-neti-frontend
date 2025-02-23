@@ -1,0 +1,24 @@
+.button {
+  font-size: 16px;
+  padding: 8px 16px;
+  gap: 4px;
+  border: none;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+}
+
+.header-transparent {
+  background-color: var(--bg-white);
+  color: var(--buttons-secondary);
+}
+
+.header-gray {
+  background-color: var(--buttons-secondary);
+  color: var(--bg-white);
+}
+
+.header-blue {
+  background-color: var(--accent);
+  color: var(--bg-white);
+}/*# sourceMappingURL=btn.css.map */
