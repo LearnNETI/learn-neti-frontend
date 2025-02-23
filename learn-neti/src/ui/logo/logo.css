@@ -1,8 +1,8 @@
 .header-logo {
   z-index: 100;
   position: relative;
-  width: 240px;
   height: 90px;
+  width: 240px;
   display: flex;
   justify-content: space-between;
   align-items: center;
