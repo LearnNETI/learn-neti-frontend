@@ -1,0 +1,64 @@
+@charset "UTF-8";
+.flash-card {
+  width: 50%;
+  height: 500px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 30px;
+  padding: 8px;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px; /* Глубина для 3D-эффекта */
+  cursor: pointer;
+}
+.flash-card__content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+.flash-card.flipped .flash-card__content {
+  transform: rotateY(180deg);
+}
+.flash-card__front, .flash-card__back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden; /* Скрывает обратную сторону */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-white);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 0px 20px 0px var(--buttons-primary);
+}
+.flash-card__back {
+  transform: rotateY(180deg);
+}
+
+.buttons-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  gap: 8px;
+}
+.buttons-list__button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--buttons-primary);
+}
+.buttons-list__button:nth-child(1) svg {
+  rotate: 180deg;
+  margin-left: -4px;
+  margin-top: 2px;
+}
+.buttons-list__button:nth-child(2) svg {
+  margin-left: 4px;
+  margin-top: 2px;
+}/*# sourceMappingURL=flash-card.css.map */

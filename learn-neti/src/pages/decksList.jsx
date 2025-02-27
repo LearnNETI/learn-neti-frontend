@@ -1,12 +1,10 @@
 import React from "react";
-import Header from "../components/header/header";
 import Main from "../components/main/main";
-
+import Feed from "../components/feed/feed";
 const DecksList = () => {
     return (
         <>
-        <Header></Header>
-        <Main></Main>
+        <Main content={<Feed/>}></Main>
         </>
     );
 };
