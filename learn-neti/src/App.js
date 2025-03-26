@@ -3,6 +3,7 @@ import DecksList from './pages/decksList';
 import DeckStart from './pages/deckStart';
 import Sidebar from './components/sidebar/sidebar';
 import Header from './components/header/header';
+import ModulesPage from './pages/moduleList';
 function App(props) {
   return (
       <div className="App">
@@ -13,6 +14,7 @@ function App(props) {
             <Route path="/" element={<Navigate to="/deck/list" replace />} />
             <Route path="/deck/list" element={<DecksList />} />
             <Route path="/deck/start" element={<DeckStart />} />
+            <Route path="/modules" element={<ModulesPage />} />
           </Routes>
         </main>
       </div>

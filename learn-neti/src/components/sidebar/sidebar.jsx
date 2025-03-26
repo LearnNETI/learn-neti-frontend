@@ -1,21 +1,40 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import Button from "../../ui/btn/btn";
 import "./sidebar.css";
 
 const Sidebar = () => {
     const navigate = useNavigate();
+    const [hidden, setHide] = useState(false);
 
-    if (!navigate) {
-        return null; // Предотвращаем ошибку, если useNavigate() недоступен
-    }
+    const isMobile = useMediaQuery({ maxWidth: 1038 });
 
     return (
-        <aside className="sidebar">
-            <Button block={"sidebar"} modificator={"regular"} innerText={"Карточки"} onClick={() => navigate("/")} />
-            <Button block={"sidebar"} modificator={"regular"} innerText={"Учебный план"} onClick={() => navigate("/plan")} />
-            <Button block={"sidebar"} modificator={"regular"} innerText={"Избранное"} onClick={() => navigate("/favorites")} />
-            <Button block={"sidebar"} modificator={"regular"} innerText={"Уведомления"} onClick={() => navigate("/notifications")} />
-        </aside>
+        <>
+        <div className={`sidebar-wrapper ${isMobile && hidden ? "mobile" : ""}`}>
+            {!isMobile && (
+                <aside className="sidebar">
+                    <Button block={"sidebar"} modificator={"regular"} innerText={"Карточки"} onClick={() => navigate("/")} />
+                    <Button block={"sidebar"} modificator={"regular"} innerText={"Учебный план"} onClick={() => navigate("/modules")} />
+                    <Button block={"sidebar"} modificator={"regular"} innerText={"Избранное"}/>
+                    <Button block={"sidebar"} modificator={"regular"} innerText={"Уведомления"}/>
+                </aside>
+            )}
+
+            {isMobile && (
+                <>
+                <aside className="sidebar">
+                <Button block={"sidebar"} modificator={"regular"} innerText={"Карточки"} onClick={() => navigate("/deck/list")} />
+                <Button block={"sidebar"} modificator={"regular"} innerText={"Учебный план"} onClick={() => navigate("/modules")} />
+                <Button block={"sidebar"} modificator={"regular"} innerText={"Избранное"} />
+                <Button block={"sidebar"} modificator={"regular"} innerText={"Уведомления"} />
+                </aside>
+                <button className={`sidebar-btn ${hidden ? "" : "rotated"}`} onClick={() => setHide(!hidden)}></button>
+                </>
+            )}
+        </div>
+        </>
     );
 };
 

@@ -1,5 +1,6 @@
 .feed {
-  margin-top: 80px;
+  margin-top: 40px;
+  padding: 8px;
 }
 .feed__head {
   text-align: center;
@@ -17,6 +18,12 @@
   border-radius: var(--border-radius);
   color: var(--bg-white);
   background-color: var(--buttons-primary);
+}
+@media (max-width: 768px) {
+  .feed__card {
+    flex-direction: column;
+    gap: 12px;
+  }
 }
 
 .card-info {
@@ -44,6 +51,11 @@
 .card-info-main-title {
   font-size: 20px;
 }
+@media (max-width: 768px) {
+  .card-info-main-title {
+    font-size: 16px;
+  }
+}
 .card-info-sub-title {
   font-size: 14px;
 }
@@ -58,6 +70,11 @@
   border-left: 2px solid var(--bg-white);
   border-right: 2px solid var(--bg-white);
 }
+@media (max-width: 768px) {
+  .amount-of-cards {
+    border: none;
+  }
+}
 
 .decimal-value {
   font-size: 30px;
@@ -70,4 +87,14 @@
   background-color: var(--buttons-secondary);
   color: var(--bg-white);
   padding: 12px;
+  transition: all 0.3s;
+}
+.card-btn:hover {
+  background-color: var(--accent);
+  transition: all 0.3s;
+}
+@media (max-width: 768px) {
+  .card-btn {
+    border-radius: 0px 0px var(--border-radius) var(--border-radius);
+  }
 }/*# sourceMappingURL=feed.css.map */

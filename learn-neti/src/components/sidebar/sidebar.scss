@@ -2,15 +2,71 @@
     background-color: var(--bg-white);
     padding: 16px;
     border-radius: var(--border-radius); 
-    position: fixed;
-    left: 32px;
-    top: 132px;
+    
     display: flex;
     flex-direction: column;
     gap: 12px;
     &-regular {
         display: flex;
         justify-content: center;
+        &:hover {
+            background-color: var(--accent);
+            color: var(--bg-white);
+            transition: all 0.3s;
+        }
+        transition: all 0.3s;
     }
 
+}
+.sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    left: 32px;
+    top: 132px;
+    transition: all 0.3s;
+    
+}
+
+.sidebar-btn {
+    background-color: var(--buttons-secondary);
+    width: 20px;
+    height: 40px;
+    border: none;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    position: relative;
+    &::after {
+        position: absolute;
+        content: url("../../static/icons/Arrow.svg");
+        top: 8px;
+        left: 0;
+        transition: all 0.3s;
+    }
+}
+.sidebar-wrapper.mobile {
+    left: 190px;
+}
+@media (max-width: 1438px) {
+    .sidebar-wrapper {
+        left: 6px;
+    }
+    .sidebar button {
+        padding: 8px;
+        font-size: 14px;
+    }
+    .sidebar-wrapper.mobile {
+        left: -165px;
+    }
+}
+@media (max-width: 1260px) {
+    .sidebar-wrapper {
+        left: 6px;
+    }
+}
+.sidebar-btn.rotated::after {
+    transform: rotate(180deg);
+    top:4px;
+    left: -2px;
+    transition: all 0.3s;
 }

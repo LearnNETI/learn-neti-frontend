@@ -1,0 +1,14 @@
+.modules-section {
+    margin: 0 auto;
+    background-color: var(--bg-white);
+    padding: 16px;
+    display: flex;
+    align-items:start;
+    justify-content: space-between;
+    width: 80%;
+    @media (max-width:768px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+}

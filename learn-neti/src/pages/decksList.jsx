@@ -4,7 +4,14 @@ import Feed from "../components/feed/feed";
 const DecksList = () => {
     return (
         <>
-        <Main content={<Feed/>}></Main>
+        <Main content={
+            <Feed
+            subject="Программирование"
+            hasTest="Тест"
+            mainTitle="Структуры"
+            subTitle="Объявление структур. Способы управления структурами"
+            amount="10"
+            />}></Main>
         </>
     );
 };

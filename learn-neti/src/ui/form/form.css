@@ -1,7 +1,8 @@
 @charset "UTF-8";
 .search-form {
   border-radius: var(--border-radius);
-  display: inline-block;
+  display: flex;
+  width: 40%;
   align-items: center;
   position: relative;
   gap: 8px;
@@ -18,7 +19,8 @@
   position: relative; /* Контекст для псевдоэлемента */
   padding: 0 34px;
   height: 40px;
-  width: 336px;
+  display: flex;
+  width: 100%;
   background-color: var(--bg-gray);
   z-index: 2;
   border-radius: var(--border-radius);
@@ -46,4 +48,16 @@
 .search-form__input:focus::placeholder {
   opacity: 0;
   transition: all 0.3s;
+}
+@media (max-width: 768px) {
+  .search-form__input {
+    font-size: 14px;
+    padding-right: 2px;
+    padding-left: 2px;
+  }
+}
+@media (max-width: 768px) {
+  .search-form::after {
+    content: "";
+  }
 }/*# sourceMappingURL=form.css.map */

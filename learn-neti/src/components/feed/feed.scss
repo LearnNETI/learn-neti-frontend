@@ -1,5 +1,6 @@
 .feed {
-    margin-top: 80px;
+    margin-top: 40px;
+    padding: 8px;
     &__head {
         text-align: center;
     }
@@ -16,6 +17,10 @@
         border-radius: var(--border-radius);
         color: var(--bg-white);
         background-color: var(--buttons-primary);
+        @media (max-width:768px) {
+            flex-direction: column;
+            gap: 12px;
+        }
     }
 }
 .card-info {
@@ -41,6 +46,9 @@
     }
     &-main-title {
         font-size: 20px;
+        @media (max-width:768px) {
+            font-size: 16px;
+        }
     }
     &-sub-title {
         font-size: 14px;
@@ -55,6 +63,9 @@
     text-align: center;
     border-left: 2px solid var(--bg-white);
     border-right: 2px solid var(--bg-white);
+    @media (max-width:768px) {
+        border: none;
+    }
 }
 .decimal-value {
     font-size: 30px;
@@ -66,4 +77,13 @@
     background-color: var(--buttons-secondary);
     color: var(--bg-white);
     padding: 12px;
+    transition: all 0.3s;
+    &:hover {
+        background-color: var(--accent);
+        transition: all 0.3s;
+    }
+    @media (max-width:768px) {
+        border-radius: 0px 0px var(--border-radius) var(--border-radius);
+
+    }
 }
