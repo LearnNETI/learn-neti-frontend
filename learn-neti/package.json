@@ -39,7 +39,7 @@
   "devDependencies": {
     "gh-pages": "^6.3.0"
   },
-  "homepage": "https://LearnNETI.github.io/learn-neti-frontend/",
+  "homepage": "https://LearnNETI.github.io/learn-neti-frontend",
   "scripts": {
   "predeploy": "npm run build",
   "deploy": "gh-pages -d build",
