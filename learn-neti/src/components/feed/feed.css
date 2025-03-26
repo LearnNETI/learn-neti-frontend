@@ -10,7 +10,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
+  position: relative;
+  gap: 60px;
 }
 .feed__card {
   display: flex;
@@ -97,4 +98,18 @@
   .card-btn {
     border-radius: 0px 0px var(--border-radius) var(--border-radius);
   }
+}
+
+.favorite-btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: var(--buttons-primary);
+  color: var(--bg-white);
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  top: -44px;
+  font-size: 24px;
+  left: 0;
 }/*# sourceMappingURL=feed.css.map */

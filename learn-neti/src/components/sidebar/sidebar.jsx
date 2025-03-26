@@ -17,8 +17,8 @@ const Sidebar = () => {
                 <aside className="sidebar">
                     <Button block={"sidebar"} modificator={"regular"} innerText={"Карточки"} onClick={() => navigate("/")} />
                     <Button block={"sidebar"} modificator={"regular"} innerText={"Учебный план"} onClick={() => navigate("/modules")} />
-                    <Button block={"sidebar"} modificator={"regular"} innerText={"Избранное"}/>
-                    <Button block={"sidebar"} modificator={"regular"} innerText={"Уведомления"}/>
+                    <Button block={"sidebar"} modificator={"regular"} innerText={"Избранное"} onClick={() => navigate("/favourites")}/>
+                    {/* <Button block={"sidebar"} modificator={"regular"} innerText={"Уведомления"}/> */}
                 </aside>
             )}
 
@@ -27,8 +27,8 @@ const Sidebar = () => {
                 <aside className="sidebar">
                 <Button block={"sidebar"} modificator={"regular"} innerText={"Карточки"} onClick={() => navigate("/deck/list")} />
                 <Button block={"sidebar"} modificator={"regular"} innerText={"Учебный план"} onClick={() => navigate("/modules")} />
-                <Button block={"sidebar"} modificator={"regular"} innerText={"Избранное"} />
-                <Button block={"sidebar"} modificator={"regular"} innerText={"Уведомления"} />
+                <Button block={"sidebar"} modificator={"regular"} innerText={"Избранное"} onClick={() => navigate("/favourites")}/>
+                {/* <Button block={"sidebar"} modificator={"regular"} innerText={"Уведомления"} /> */}
                 </aside>
                 <button className={`sidebar-btn ${hidden ? "" : "rotated"}`} onClick={() => setHide(!hidden)}></button>
                 </>

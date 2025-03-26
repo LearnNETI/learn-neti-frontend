@@ -15,7 +15,7 @@ const Header = (props) => {
             <LogoBtn src={logo} innerText="Learn NETI"></LogoBtn>
             <Form></Form>
             <div className="header-actions">
-            <Button src={infoCircle} block={"header"} modificator={"transparent"} innerText={"Справка"}></Button>
+            {/* <Button src={infoCircle} block={"header"} modificator={"transparent"} innerText={"Справка"}></Button> */}
             <Button src={Plus} block={"header"} modificator={"gray"} innerText={"Создать"}></Button>
             <Button src={Login} block={"header"} modificator={"blue"} innerText={"Войти"}></Button>
             </div>

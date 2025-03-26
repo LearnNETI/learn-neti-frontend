@@ -1,5 +1,7 @@
 import React from "react";
+import Button from "../../ui/btn/btn";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./flash-card.css"
 
 const flashcards = [
@@ -50,6 +52,7 @@ const flashcards = [
 const FlashCard = (props) => {
     const [isFlipped, setIsFlipped] = useState(false);
     const [index, setIndex] = useState(0);
+    const navigate = useNavigate();
     const nextCard = () => {
         setIndex((prev) => (prev + 1) % flashcards.length);
         setIsFlipped(false);
@@ -60,7 +63,9 @@ const FlashCard = (props) => {
       };
     return (
         <div className="flash-card-section">
-           <h2>{index + 1} из {flashcards.length}</h2> 
+           <h2>{index + 1} из {flashcards.length}</h2>
+           <Button innerText={"Режим тестирования"} onClick={() => {navigate("/test")}}/>
+           
         <div 
             className={`flash-card ${isFlipped ? "flipped" : ""}`}
             onClick={() => setIsFlipped(!isFlipped)}

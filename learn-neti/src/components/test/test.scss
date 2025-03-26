@@ -1,0 +1,33 @@
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+.test-question-info {
+    margin-top: 16px;
+}
+.test-btn {
+    background-color: var(--accent);
+    color: var(--bg-white);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 8px;
+    margin-top: 24px;
+}
+.test-quest {
+    padding: 8px;
+    font-size: 24px;
+    font-weight: bold;
+}
+.test-results h2{
+    padding-bottom: 24px;
+}
+.test-question {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.test-mode {
+    max-width: 80%;
+    margin: 0 auto;
+}
