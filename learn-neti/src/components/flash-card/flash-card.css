@@ -77,4 +77,13 @@
   .flash-card__back, .flash-card__front {
     font-size: 24px;
   }
+}
+
+.test-mode-button {
+  margin: 0 auto;
+  padding: 8px;
+  border-radius: var(--border-radius);
+  border: none;
+  background-color: var(--buttons-primary);
+  color: var(--bg-white);
 }/*# sourceMappingURL=flash-card.css.map */
