@@ -4,12 +4,11 @@ import './normalize.css';
 import './index.css';
 import './variables.css';
 import App from './App';
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";  // Используем HashRouter вместо BrowserRouter
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
+  <HashRouter>
     <App />
-  </BrowserRouter>
+  </HashRouter>
 );
-
