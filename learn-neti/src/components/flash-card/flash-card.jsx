@@ -64,7 +64,7 @@ const FlashCard = (props) => {
     return (
         <div className="flash-card-section">
            <h2>{index + 1} из {flashcards.length}</h2>
-           <Button innerText={"Режим тестирования"} onClick={() => {navigate("/test")}}/>
+           <Button className="test-mode-button" innerText={"Режим тестирования"} onClick={() => {navigate("/test")}}/>
            
         <div 
             className={`flash-card ${isFlipped ? "flipped" : ""}`}
