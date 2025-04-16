@@ -12,12 +12,12 @@ const FlashCard = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-
+    const API_URL = process.env.REACT_APP_API_URL;
     // Загрузка карточек колоды
     useEffect(() => {
         const fetchDeckCards = async () => {
             try {
-                const response = await fetch(`/api/v1/deck/${deckId}/start`);
+                const response = await fetch(`${API_URL}/api/v1/deck/${deckId}/start`);
                 
                 if (!response.ok) {
                     throw new Error(`Ошибка HTTP: ${response.status}`);

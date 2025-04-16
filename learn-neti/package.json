@@ -1,6 +1,5 @@
 {
   "name": "learn-neti",
-  "proxy": "http://217.71.129.139:5542",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

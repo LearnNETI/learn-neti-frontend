@@ -8,12 +8,12 @@ const TestPage = () => {
     const [tests, setTests] = useState([]); // Состояние для хранения тестов
     const [loading, setLoading] = useState(true); // Состояние загрузки
     const [error, setError] = useState(null); // Состояние ошибки
-
+    const API_URL = process.env.REACT_APP_API_URL;
     // Выполняем fetch запрос при монтировании компонента
     useEffect(() => {
         const fetchTests = async () => {
             try {
-                const response = await fetch(`/api/v1/deck/${deckId}/start`);
+                const response = await fetch(`${API_URL}/api/v1/deck/${deckId}/start`);
                 if (!response.ok) {
                     throw new Error(`Ошибка HTTP: ${response.status}`);
                 }
