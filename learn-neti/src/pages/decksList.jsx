@@ -8,9 +8,10 @@ const DecksList = ({ searchTerm }) => { // Принимаем searchTerm как 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedSubject, setSelectedSubject] = useState("Все");
-
+  const API_URL = process.env.REACT_APP_API_URL;
+  console.log(API_URL);
   useEffect(() => {
-    fetch("/api/v1/deck/list")
+    fetch(`${API_URL}/api/v1/deck/list`)
       .then(response => {
         if (!response.ok) throw new Error("Network error");
         return response.json();
