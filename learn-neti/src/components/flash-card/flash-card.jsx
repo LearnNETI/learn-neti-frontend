@@ -1,93 +1,139 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { data, useNavigate, useParams } from "react-router-dom";
 import Button from "../../ui/btn/btn";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./flash-card.css"
+import "./flash-card.css";
 
-const flashcards = [
-    { 
-        question: "Что такое структура в C?", 
-        answer: "Структура в C — это пользовательский тип данных, который объединяет несколько переменных разного типа под одним именем." 
-    },
-    { 
-        question: "Как объявить структуру в C?", 
-        answer: "Используйте ключевое слово struct:\n\nstruct Point {\n  int x;\n  int y;\n};" 
-    },
-    { 
-        question: "Как создать переменную структуры?", 
-        answer: "Используйте объявленную структуру:\n\nstruct Point p1;\np1.x = 10;\np1.y = 20;" 
-    },
-    { 
-        question: "Как передать структуру в функцию?", 
-        answer: "Передача возможна по значению или по указателю:\n\nvoid printPoint(struct Point p) {...}\nvoid modifyPoint(struct Point *p) {...}" 
-    },
-    { 
-        question: "Как выделить память для структуры динамически?", 
-        answer: "Используйте malloc:\n\nstruct Point *p = (struct Point*)malloc(sizeof(struct Point));" 
-    },
-    { 
-        question: "Что такое typedef для структуры?", 
-        answer: "Позволяет создать псевдоним для структуры:\n\ntypedef struct Point {\n  int x, y;\n} Point;" 
-    },
-    { 
-        question: "Как вложить одну структуру в другую?", 
-        answer: "Включите одну структуру внутрь другой:\n\nstruct Rectangle {\n  struct Point topLeft;\n  struct Point bottomRight;\n};" 
-    },
-    { 
-        question: "Как работает выравнивание структуры в памяти?", 
-        answer: "Компилятор может добавлять отступы (padding) для оптимизации доступа к памяти." 
-    },
-    { 
-        question: "Как уменьшить размер структуры в памяти?", 
-        answer: "Используйте #pragma pack(1) или правильный порядок полей." 
-    },
-    { 
-        question: "Как определить размер структуры в байтах?", 
-        answer: "Используйте оператор sizeof:\n\nprintf(\"%lu\", sizeof(struct Point));" 
-    }
-];
-
-
-
-const FlashCard = (props) => {
+const FlashCard = () => {
+    const { deckId } = useParams();
     const [isFlipped, setIsFlipped] = useState(false);
-    const [index, setIndex] = useState(0);
+    const [currentCardIndex, setCurrentCardIndex] = useState(0);
+    const [cards, setCards] = useState([]);
+    const [tests, setTests] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
-    const nextCard = () => {
-        setIndex((prev) => (prev + 1) % flashcards.length);
+
+    // Загрузка карточек колоды
+    useEffect(() => {
+        const fetchDeckCards = async () => {
+            try {
+                const response = await fetch(`/api/v1/deck/${deckId}/start`);
+                
+                if (!response.ok) {
+                    throw new Error(`Ошибка HTTP: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                if (!data.data || !Array.isArray(data.data.cards)) {
+                    throw new Error("Некорректный формат данных");
+                }
+                
+                setCards(data.data.cards);
+                setTests(data.data.tests || []); // Сохраняем тесты или пустой массив
+            } catch (err) {
+                setError(err.message);
+                setCards([]);
+                setTests([]);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchDeckCards();
+    }, [deckId]);
+    const handleNextCard = () => {
+        setCurrentCardIndex(prev => (prev + 1) % cards.length);
         setIsFlipped(false);
     };
-    const prevCard = () => {
-        setIndex((prev) => (prev - 1 + flashcards.length) % flashcards.length);
+
+    const handlePrevCard = () => {
+        setCurrentCardIndex(prev => (prev - 1 + cards.length) % cards.length);
         setIsFlipped(false);
-      };
+    };
+
+    const handleTestMode = () => {
+        navigate(`/test/${deckId}`);
+    };
+
+    if (loading) {
+        return (
+            <div className="flash-card-section">
+                <div className="loading-message">Загрузка карточек...</div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flash-card-section">
+                <div className="error-message">Ошибка: {error}</div>
+            </div>
+        );
+    }
+
+    if (cards.length === 0) {
+        return (
+            <div className="flash-card-section">
+                <div className="empty-message">В этой колоде нет карточек</div>
+            </div>
+        );
+    }
+
+    const currentCard = cards[currentCardIndex];
     return (
         <div className="flash-card-section">
-           <h2>{index + 1} из {flashcards.length}</h2>
-           <Button className="test-mode-button" innerText={"Режим тестирования"} onClick={() => {navigate("/test")}}/>
-           
-        <div 
-            className={`flash-card ${isFlipped ? "flipped" : ""}`}
-            onClick={() => setIsFlipped(!isFlipped)}
-        >
-            <div className="flash-card__content">
-                    <div className="flash-card__front">{flashcards[index].question}</div>
-                    <div className="flash-card__back">{flashcards[index].answer}</div>                                   
+            <h2>{currentCardIndex + 1} из {cards.length}</h2>
+            
+            {tests.length > 0 && (
+                <Button 
+                    block="flash-card" 
+                    modificator="testmode" 
+                    innerText="Режим тестирования" 
+                    onClick={handleTestMode}
+                />
+            )}
+            
+            <div 
+                className={`flash-card ${isFlipped ? "flipped" : ""}`}
+                onClick={() => setIsFlipped(!isFlipped)}
+            >
+                <div className="flash-card__content">
+                    <div className="flash-card__front">
+                        {currentCard.image_url}
+                    </div>
+                    <div className="flash-card__back">
+                        {currentCard.text}
+                    </div>
+                </div>
             </div>
-        </div>
-        <ul className="buttons-list">
-            <button onClick={prevCard} disabled={index === 0} className="buttons-list__button">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 19L14.3306 12.7809C14.7158 12.3316 14.7158 11.6684 14.3306 11.2191L9 5" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-                </svg>
-
-            </button>
-            <button onClick={nextCard} disabled={index === flashcards.length - 1} className="buttons-list__button">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 19L14.3306 12.7809C14.7158 12.3316 14.7158 11.6684 14.3306 11.2191L9 5" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-                </svg>
-            </button>
-        </ul>
+            
+            <ul className="buttons-list">
+                <button 
+                    onClick={handlePrevCard} 
+                    disabled={currentCardIndex === 0} 
+                    className="buttons-list__button"
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 19L14.3306 12.7809C14.7158 12.3316 14.7158 11.6684 14.3306 11.2191L9 5" 
+                              stroke="#fff" 
+                              strokeWidth="4" 
+                              strokeLinecap="round"/>
+                    </svg>
+                </button>
+                
+                <button 
+                    onClick={handleNextCard} 
+                    disabled={currentCardIndex === cards.length - 1} 
+                    className="buttons-list__button"
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 19L14.3306 12.7809C14.7158 12.3316 14.7158 11.6684 14.3306 11.2191L9 5" 
+                              stroke="#fff" 
+                              strokeWidth="4" 
+                              strokeLinecap="round"/>
+                    </svg>
+                </button>
+            </ul>
         </div>
     );
 };

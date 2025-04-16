@@ -1,20 +1,12 @@
 .feed {
     margin-top: 40px;
     padding: 8px;
-    &__head {
-        text-align: center;
-    }
-    &__cards {
-        margin-top: 40px;
+    
+    &-card {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        width: 100%;
         position: relative;
-        gap: 60px;
-    }
-    &__card {
-        display: flex;
-        max-width: 700px;
+        justify-content: space-between;
         border-radius: var(--border-radius);
         color: var(--bg-white);
         background-color: var(--buttons-primary);
@@ -38,6 +30,7 @@
         font-size: 12px;
         padding: 4px 8px;
         background-color: #d9d9d9;
+        text-align: center;
         border-radius: var(--border-radius);
     }
     &-titles {
@@ -59,6 +52,12 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    padding-right: 4px;
+    padding-left: 4px;
+    @media (min-width:768px ) {
+        margin-left: auto;
+
+    }
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -100,4 +99,17 @@
     top: -44px;
     font-size: 24px;
     left: 0;
+
+}
+.feed {
+    &__head {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    &__cards {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        width: 100%;
+    }
 }

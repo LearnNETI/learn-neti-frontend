@@ -29,5 +29,10 @@
 }
 .test-mode {
     max-width: 80%;
-    margin: 0 auto;
+    margin-right: auto;
+}
+.test-navigation {
+    width: 100px;
+    display: flex;
+    gap: 4px;
 }

@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from "react";
-import "./feed.css"; // Подключаем тот же файл стилей, что и для Feed
 import { useNavigate } from "react-router-dom";
+import "./feed.css"; // Подключаем тот же файл стилей, что и для Feed
+
 const Favorites = () => {
     const [favorites, setFavorites] = useState([]);
     const navigate = useNavigate();
+
+    // Загрузка избранных карточек из localStorage при монтировании
     useEffect(() => {
         const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
         setFavorites(savedFavorites);
     }, []);
+
+    // Удаление карточки из избранного
+    const removeFromFavorites = (mainTitle) => {
+        const updatedFavorites = favorites.filter(fav => fav.mainTitle !== mainTitle);
+        setFavorites(updatedFavorites);
+        localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    };
 
     return (
         <section className="feed">
@@ -17,7 +27,7 @@ const Favorites = () => {
                     <p>У вас пока нет избранных карточек.</p>
                 ) : (
                     favorites.map((card, index) => (
-                        <li key={index} className="feed__card">
+                        <li key={index} className="feed-card">
                             <div className="card-info">
                                 <div className="card-info-themes">
                                     <p className="card-info-subject">{card.subject}</p>
@@ -32,7 +42,18 @@ const Favorites = () => {
                                 <p className="amount-of-cards-header">Количество карточек:</p>
                                 <span className="decimal-value">{card.amount}</span>
                             </div>
-                            <button className="card-btn" onClick={() => navigate("/deck/start")}>Начать</button>
+                            <button
+                                className="card-btn"
+                                onClick={() => navigate(`/deck/start/${card.id}`)}
+                            >
+                                Начать
+                            </button>
+                            <button
+                                className="favorite-btn"
+                                onClick={() => removeFromFavorites(card.mainTitle)}
+                            >
+                                -
+                            </button>
                         </li>
                     ))
                 )}

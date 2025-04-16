@@ -2,26 +2,17 @@
   margin-top: 40px;
   padding: 8px;
 }
-.feed__head {
-  text-align: center;
-}
-.feed__cards {
-  margin-top: 40px;
+.feed-card {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
   position: relative;
-  gap: 60px;
-}
-.feed__card {
-  display: flex;
-  max-width: 700px;
+  justify-content: space-between;
   border-radius: var(--border-radius);
   color: var(--bg-white);
   background-color: var(--buttons-primary);
 }
 @media (max-width: 768px) {
-  .feed__card {
+  .feed-card {
     flex-direction: column;
     gap: 12px;
   }
@@ -42,6 +33,7 @@
   font-size: 12px;
   padding: 4px 8px;
   background-color: #d9d9d9;
+  text-align: center;
   border-radius: var(--border-radius);
 }
 .card-info-titles {
@@ -65,11 +57,18 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding-right: 4px;
+  padding-left: 4px;
   align-items: center;
   justify-content: center;
   text-align: center;
   border-left: 2px solid var(--bg-white);
   border-right: 2px solid var(--bg-white);
+}
+@media (min-width: 768px) {
+  .amount-of-cards {
+    margin-left: auto;
+  }
 }
 @media (max-width: 768px) {
   .amount-of-cards {
@@ -112,4 +111,15 @@
   top: -44px;
   font-size: 24px;
   left: 0;
+}
+
+.feed__head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.feed__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  width: 100%;
 }/*# sourceMappingURL=feed.css.map */

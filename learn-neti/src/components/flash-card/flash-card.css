@@ -79,9 +79,9 @@
   }
 }
 
-.test-mode-button {
-  margin: 0 auto;
+.flash-card-testmode {
   padding: 8px;
+  margin: 0 auto;
   border-radius: var(--border-radius);
   border: none;
   background-color: var(--buttons-primary);

@@ -1,34 +1,50 @@
 import React, { useState } from "react";
-import "./test.css"; // Подключаем стили
+import "./test.css";
 
-const TestMode = ({ flashcards }) => {
+const TestMode = ({ tests }) => {
+    const flashcards = tests.map(test => ({
+        question: test.question,
+        options: test.options.map(option => option.text),
+        correctAnswer: test.options.find(option => option.is_correct)?.text
+    }));
+
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
-    const [selectedOption, setSelectedOption] = useState(null);
-    const [correctAnswers, setCorrectAnswers] = useState(0);
+    const [selectedOptions, setSelectedOptions] = useState(Array(tests.length).fill(null)); // Массив ответов
     const [isTestComplete, setIsTestComplete] = useState(false);
 
+    // Текущий выбранный вариант (для удобства)
+    const currentSelectedOption = selectedOptions[currentCardIndex];
+
     const handleOptionChange = (e) => {
-        setSelectedOption(e.target.value);
+        const newSelectedOptions = [...selectedOptions];
+        newSelectedOptions[currentCardIndex] = e.target.value;
+        setSelectedOptions(newSelectedOptions);
     };
 
-    const handleAnswerSubmit = () => {
-        if (selectedOption === flashcards[currentCardIndex].correctAnswer) {
-            setCorrectAnswers(correctAnswers + 1); // Увеличиваем количество правильных ответов
-        }
+    const handleNextQuestion = () => {
         if (currentCardIndex + 1 < flashcards.length) {
             setCurrentCardIndex(currentCardIndex + 1);
-            setSelectedOption(null); // Сбрасываем выбранный вариант
         } else {
-            setIsTestComplete(true); // Завершаем тест
+            setIsTestComplete(true);
+        }
+    };
+
+    const handlePrevQuestion = () => {
+        if (currentCardIndex > 0) {
+            setCurrentCardIndex(currentCardIndex - 1);
         }
     };
 
     const resetTest = () => {
         setCurrentCardIndex(0);
-        setSelectedOption(null);
-        setCorrectAnswers(0);
+        setSelectedOptions(Array(tests.length).fill(null));
         setIsTestComplete(false);
     };
+
+    // Подсчёт правильных ответов (для результатов)
+    const correctAnswers = selectedOptions.reduce((count, answer, index) => {
+        return answer === flashcards[index]?.correctAnswer ? count + 1 : count;
+    }, 0);
 
     return (
         <section className="test-mode">
@@ -45,7 +61,6 @@ const TestMode = ({ flashcards }) => {
                     <h2>Вопрос {currentCardIndex + 1}:</h2>
                     <p className="test-quest">{flashcards[currentCardIndex].question}</p>
 
-            
                     <div className="options-list">
                         {flashcards[currentCardIndex].options.map((option, index) => (
                             <div key={index}>
@@ -54,7 +69,7 @@ const TestMode = ({ flashcards }) => {
                                     id={`option-${index}`}
                                     name="answer"
                                     value={option}
-                                    checked={selectedOption === option}
+                                    checked={currentSelectedOption === option}
                                     onChange={handleOptionChange}
                                 />
                                 <label htmlFor={`option-${index}`}>{option}</label>
@@ -62,9 +77,22 @@ const TestMode = ({ flashcards }) => {
                         ))}
                     </div>
 
-                    <button className="test-btn" onClick={handleAnswerSubmit} disabled={selectedOption === null}>
-                        Ответить
-                    </button>
+                    <div className="test-navigation">
+                        <button 
+                            className="test-btn"
+                            onClick={handlePrevQuestion}
+                            disabled={currentCardIndex === 0}
+                        >
+                            Назад
+                        </button>
+                        <button 
+                            className="test-btn"
+                            onClick={handleNextQuestion}
+                            disabled={currentSelectedOption === null}
+                        >
+                            {currentCardIndex + 1 === flashcards.length ? "Завершить" : "Далее"}
+                        </button>
+                    </div>
                     <p className="test-question-info">
                         {currentCardIndex + 1} из {flashcards.length}
                     </p>
