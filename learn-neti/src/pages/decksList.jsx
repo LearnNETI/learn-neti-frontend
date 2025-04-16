@@ -11,7 +11,7 @@ const DecksList = ({ searchTerm }) => { // Принимаем searchTerm как 
   const API_URL = process.env.REACT_APP_API_URL;
   console.log(API_URL);
   useEffect(() => {
-    fetch(`${API_URL}/api/v1/deck/list`)
+    fetch(`https://cors-anywhere.herokuapp.com/${API_URL}/api/v1/deck/list`)
       .then(response => {
         if (!response.ok) throw new Error("Network error");
         return response.json();
