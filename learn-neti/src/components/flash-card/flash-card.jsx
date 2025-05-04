@@ -17,7 +17,7 @@ const FlashCard = () => {
     useEffect(() => {
         const fetchDeckCards = async () => {
             try {
-                const response = await fetch(`https://cors-anywhere.herokuapp.com/${API_URL}/api/v1/deck/${deckId}/start`);
+                const response = await fetch(`https://corsproxy.io/?${API_URL}/api/v1/deck/${deckId}/start`);
                 
                 if (!response.ok) {
                     throw new Error(`Ошибка HTTP: ${response.status}`);
