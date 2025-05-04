@@ -9,9 +9,8 @@ const DecksList = ({ searchTerm }) => { // Принимаем searchTerm как 
   const [error, setError] = useState(null);
   const [selectedSubject, setSelectedSubject] = useState("Все");
   const API_URL = process.env.REACT_APP_API_URL;
-  console.log(API_URL);
   useEffect(() => {
-    fetch(`https://corsproxy.io/?${API_URL}/api/v1/deck/list`)
+    fetch(`https://corsproxy.io/?${encodeURIComponent(`${API_URL}/api/v1/deck/list`)}`)
       .then(response => {
         if (!response.ok) throw new Error("Network error");
         return response.json();
