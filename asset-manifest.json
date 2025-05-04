@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/learn-neti-frontend/static/css/main.3c611b95.css",
-    "main.js": "/learn-neti-frontend/static/js/main.97c50367.js",
+    "main.js": "/learn-neti-frontend/static/js/main.ac709639.js",
     "static/media/Comfortaa-Regular.woff2": "/learn-neti-frontend/static/media/Comfortaa-Regular.8bc80f5d42ca14545b2f.woff2",
     "static/media/Logo.svg": "/learn-neti-frontend/static/media/Logo.fe5fa220ff972b017f20d7598cb07fe9.svg",
     "static/media/Plus.svg": "/learn-neti-frontend/static/media/Plus.7ed8cda2eadf271f7b90ebf3e215a9df.svg",
@@ -10,10 +10,10 @@
     "static/media/Search.svg": "/learn-neti-frontend/static/media/Search.e4b1995d498109cb7863.svg",
     "static/media/Arrow.svg": "/learn-neti-frontend/static/media/Arrow.4af187d5daa54e07c7f5.svg",
     "main.3c611b95.css.map": "/learn-neti-frontend/static/css/main.3c611b95.css.map",
-    "main.97c50367.js.map": "/learn-neti-frontend/static/js/main.97c50367.js.map"
+    "main.ac709639.js.map": "/learn-neti-frontend/static/js/main.ac709639.js.map"
   },
   "entrypoints": [
     "static/css/main.3c611b95.css",
-    "static/js/main.97c50367.js"
+    "static/js/main.ac709639.js"
   ]
 }
