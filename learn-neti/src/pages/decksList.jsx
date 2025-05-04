@@ -10,7 +10,7 @@ const DecksList = ({ searchTerm }) => { // Принимаем searchTerm как 
   const [selectedSubject, setSelectedSubject] = useState("Все");
   const API_URL = process.env.REACT_APP_API_URL;
   useEffect(() => {
-    fetch(`https://cors-proxy-kyve.onrender.com/${API_URL}/api/v1/deck/list`)
+    fetch(`https://cors-proxy-kyve.onrender.com/api/v1/deck/list`)
       .then(response => {
         if (!response.ok) throw new Error("Network error");
         return response.json();
